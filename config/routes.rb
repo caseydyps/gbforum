@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   #root
   root "posts#index"
   #user
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :edit, :update] do
     member do
       get :post
       get :collect
