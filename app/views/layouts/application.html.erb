@@ -1,14 +1,63 @@
+
+
 <!DOCTYPE html>
 <html>
   <head>
-    <title>GbForum</title>
-    <%= csrf_meta_tags %>
 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GB's forum</title>
+
+    <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid" id="top-bar">
+
+        <%= link_to root_path do %>
+
+        <% end %>
+
+        <div class="button_bar col-xs-4">
+
+
+        </div>
+
+          <div class="pull-right align-middle">
+            <% if current_user %>
+
+              <div class="navbar-brand"><%= link_to current_user.name ,user_path(current_user) %></div>
+              <span class="glyphicon glyphicon-align-justify btn btn-lg dropdown-toggle" data-toggle="dropdown" style="color:gray"></span>
+              <ul class="dropdown-menu">
+                <% if current_user %>
+                  <% if current_user&.admin? %>
+                    <li><%= link_to '後台', admin_root_path %></li>
+                  <% end %>
+                  <li><%= link_to('登出', destroy_user_session_path, method: :delete) %></li>
+                  <li><%= link_to('修改密碼', edit_user_registration_path) %></li>
+                <% end %>
+              </ul>
+            <% else %>
+              <div class="navbar-brand"><%= link_to('註冊', new_user_registration_path) %></div>
+              <div class="navbar-brand"><%= link_to('登入', new_user_session_path) %></div>
+            <% end %>
+          </div>
+      </div>
+    </nav>
+
+
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
+
+      <div class="footer text-center">
+
+      </div>
   </body>
 </html>
