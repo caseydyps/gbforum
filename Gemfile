@@ -57,4 +57,6 @@ gem 'devise'
 #boostrap 4
 gem 'bootstrap', '~> 4.1.0'
 gem 'jquery-rails'
+gem 'carrierwave'
+
 
